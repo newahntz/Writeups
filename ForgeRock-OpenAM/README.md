@@ -81,33 +81,33 @@ In applications that deserialize user-input without proper validation an attacke
 
 My first action was to run a nmap scan against the target machine @ 172.16.100.90. I decided that since this is a test environment i'd go the fast and hard route. 
 
-![Screenshot](20250510194141.png)
+![Screenshot](./images/20250510194141.png)
 
 This confirmed that the target has Apache Tomcat 8.5.68 running on port 80. 
 
 The challenge has provided that we are seeking to exploit CVE-2021-35464. As such, I opened the metasploit console and used the CVE search to find modules particular to this vulnerability. 
 
-![Screenshot](20250510194457.png)
+![Screenshot](./images/20250510194457.png)
 
 Any time I load a tool I check options to ensure that I have entered all required fields for the tool/module to function properly. The values that I need to set for this particular module are RHOST (remote host) 172.16.100.90, RPORT (remote port) 80, and LHOST (local host) 172.16.200.12. 
 
-![Screenshot](20250510194731.png)
+![Screenshot](./images/20250510194731.png)
 
-![Screenshot](20250510195001.png)
+![Screenshot](./images/20250510195001.png)
 
 afterwards I do like to run "show options" once more for the sake of measuring twice and cutting once but i'll spare the screenshot
 
 after the necessary fields have been confirmed we pass 'exploit' and like magic we have a meterpreter session. 
 
-![Screenshot](20250510195424.png)
+![Screenshot](./images/20250510195424.png)
 
 From here we can upload our deploy_c2 ELF binary and check that the upload was successful (i'll double check despite metasploit telling us it was)
 
-![Screenshot](20250510195943.png)
+![Screenshot](./images/20250510195943.png)
 
 Last step of this red team exercise is to pop into a shell from our meterpreter session and execute the deploy_c2 binary. passing pwd first would have been more efficient so next time i'll be saving myself a step there
 
-![Screenshot](20250510200954.png)
+![Screenshot](./images/20250510200954.png)
 
 
 #### Blue team exercise
@@ -116,13 +116,13 @@ For our blue team exercise we are tasked with implementing the vendor-provided m
 
 To do so i've first ssh'd into the machine using the given credentials for a privileged account
 
-![Screenshot](20250510202131.png)
+![Screenshot](./images/20250510202131.png)
 
 Per the vendor, mitigation can be achieved by making an edit to comment out the VersionServlet/ccversion portion of _/path/to/tomcat/webapps/openam/WEB-INF/web.xml_
 
 I edited the file with nano and commented it out with the proper '<!-- -->' for xml.
 
-![Screenshot](20250510212023.png)
+![Screenshot](./images/20250510212023.png)
 
 It seems like the characters are malformed given the Unicode long dash and ^M characters when opening in vim to denote a windows-style CRLF but apparently this is sufficient for this challenge. 
 
