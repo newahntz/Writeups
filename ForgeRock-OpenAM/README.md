@@ -23,8 +23,8 @@ Red Team (Offensive) Objective: Utilize CVE-2021-35464 to deploy command and con
 Blue Team (Defensive) Objective: Implement a known mitigation method for CVE-2021-35464 to safeguard a server running a vulnerable OpenAM instance used by an information technology (IT) business (i.e., the blue target system).  
 
 #### Meeting Briefing
-![[Pasted image 20250510175109.png]]
-![[Pasted image 20250510175131.png]]
+![Screenshot](./images/Pasted image 20250510175109.png)
+![Screenshot](./images/Pasted image 20250510175131.png)
 
 `Doc Scurlock` Hello @playerone, welcome to the mission briefing for the CVE‐2021‐35464 "ForgeRock OpenAM Backstage Pass" Threat Sandbox. During this mission, you will be providing ethical hacking services, similar to penetration testing and security remediation, to a fictional technology company within the information technology (IT) critical infrastructure (CI) sector.
 
